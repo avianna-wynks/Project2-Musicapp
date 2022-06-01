@@ -1,11 +1,44 @@
 import React from 'react'
-
+//setArtistId(result?.result?.primary_artist.api_path)
 function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
   if (searchData.length === 0) {
     return null
   } 
+
+  // const handleClick = () => {
+  //   console.log("clicked")
+  // }
   // console.log("aaaaa", searchData)
   return (
+
+    <div className="search-result">
+      <h2> Your Music </h2>
+      {searchData?.hits.map((result, index) => {
+        return (
+      <div className='results' key={index}>
+        <div className='reslutPhoto'
+        onClick={handleClick => {setArtistId(result?.result?.primary_artist.api_path)}} >
+        <img 
+        src={result?.result?.header_image_thumbnail_url} 
+        alt="" 
+        width={"200px"}
+        />
+        </div>
+        <div className='result-info'>
+        <p> Artist : {result?.result?.artist_names}</p>
+        <p> Song : {result?.result?.title} </p>
+        <a href={result?.result?.url} > Lyrics  </a>
+        </div>
+      </div>
+      )}
+      )}
+      <div></div>
+    </div>
+  )
+}
+
+export default DisplaySearchResult;
+
     // <div className="search-result">
     //   <h2> search result </h2>
     //   <div className='results'>
@@ -39,30 +72,4 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
     //   </div>
     //   </div>
     // </div>
-    <div className="search-result">
-      <h2> Your Music </h2>
-      {searchData?.hits.map((result, index) => {
-        return (
-      <div className='results' key={index}>
-        <div className='reslutPhoto'>
-        <img 
-        src={result?.result?.header_image_thumbnail_url} 
-        alt="" 
-        width={"200px"}
-        onClick={setArtistId(result?.result?.primary_artist.api_path)}
-        />
-        </div>
-        <div className='result-info'>
-        <p> Artist : {result?.result?.artist_names}</p>
-        <p> Song : {result?.result?.title} </p>
-        <a href={result?.result?.url} > Lyrics  </a>
-        </div>
-      </div>
-      )}
-      )}
-      <div></div>
-    </div>
-  )
-}
 
-export default DisplaySearchResult

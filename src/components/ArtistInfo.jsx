@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 
 
 function ArtistInfo( { artistId }) {
-  
     const [artistInfo, setArtistInfo] = useState([]);
-    console.log("artist info", artistInfo)
+    // console.log("artist info", artistInfo)
 
     useEffect(() => {
+
         const options = {
           method: "GET",
           headers: {
@@ -15,8 +15,8 @@ function ArtistInfo( { artistId }) {
          }       
         };
           //  pink: 345'
-        const baseUrl= "https://genius.p.rapidapi.com"
-       fetch(`${baseUrl}${artistId}`, options)
+        const baseUrlArtist= "https://genius.p.rapidapi.com"
+       fetch(`${baseUrlArtist}${artistId}`, options)
           .then((response) => response.json())
           .then((data) => {
             return setArtistInfo(data?.response.artist)
@@ -27,11 +27,13 @@ function ArtistInfo( { artistId }) {
   return (
     <div className="artist-info">
       <h2> Artist info here </h2>
+      <div className="artist-photos">
       <img src={artistInfo.image_url} 
       alt="" 
       width={"450px"} 
-      height={"400px"} 
+      height={"380px"} 
       />
+      </div>
       <p>{artistInfo.name}</p>
     </div>
   )

@@ -51,6 +51,11 @@ body {
     border-radius:8px;
     box-shadow: 0 15px 35px 0 rgba(210, 76, 194, 0.5);  
     grid-area: search-result; 
+    
+}
+
+.reslutPhoto {
+  cursor: pointer;
 }
 
 .artist-info { 
@@ -60,6 +65,9 @@ body {
   box-shadow: 0 15px 35px 0 rgba(210, 76, 194, 0.5); 
   grid-area: artist-info; }
 
+.artist-photos {
+  text-align: center;
+}
 
 .results {
   display: flex;
