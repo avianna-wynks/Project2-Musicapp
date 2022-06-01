@@ -21,7 +21,7 @@ body {
 
 .pagetitle {
   font-family: 'Schoolbell', cursive;
-  font-size: large;
+  font-size: 90px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
@@ -30,8 +30,9 @@ body {
   height: 100%;
   width: 70%;
 }
+
 .form {
-  margin-left: 12rem;
+  margin-left: 16rem;
   text-align: center;
   justify-content: center;
 }

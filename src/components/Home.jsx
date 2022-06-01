@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import '../App.css';
 import SearchBox from './SearchBox';
 import DisplaySearchResult from './DisplaySearchResult';
@@ -11,6 +11,7 @@ function Home() {
     const [inputSearch, setInputSearch] = useState("");
     const [searchText, setSearchText] = useState("");
     const [artistId, setArtistId] = useState("")
+    console.log(searchData)
     
     useEffect(() => {
      const options = {
@@ -21,7 +22,9 @@ function Home() {
       }
       
      };
-       //  fetch('https://genius.p.rapidapi.com/artists/16775', options)
+     if (!searchText) 
+     return
+       //  fetch('https://genius.p.rapidapi.com/songs/5516074', options)
      const baseUrl= "https://genius.p.rapidapi.com/search?q="
     fetch(`${baseUrl}${searchText}`, options)
        .then((response) => response.json())
@@ -38,7 +41,6 @@ function Home() {
       if (!inputSearch) {
         console.log("empty search")
       } else {
-      // getData()
       setSearchText(inputSearch);
       setInputSearch("");
       }
@@ -47,8 +49,11 @@ function Home() {
 
   return (
         <div className="container">
+
       <div className="pagetitle">
-      <h1> Bangya! </h1>
+      <Link to="/." 
+      style={{ textDecoration: 'none', color: '#EF0888' }}> 
+      BANGYA! </Link>
       </div >
       <form className="form" onSubmit={handleSubmit}>
       <SearchBox 

@@ -2,7 +2,7 @@ import React from 'react'
 //setArtistId(result?.result?.primary_artist.api_path)
 function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
   if (searchData.length === 0) {
-    return null
+    return null;
   } 
 
   // const handleClick = () => {
@@ -21,13 +21,13 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
         <img 
         src={result?.result?.header_image_thumbnail_url} 
         alt="" 
-        width={"200px"}
+        width={"170px"}
         />
         </div>
         <div className='result-info'>
         <p> Artist : {result?.result?.artist_names}</p>
         <p> Song : {result?.result?.title} </p>
-        <a href={result?.result?.url} > Lyrics  </a>
+        <a href={result?.result?.url} target="_blank" > View full yrics on Genius </a>
         </div>
       </div>
       )}
