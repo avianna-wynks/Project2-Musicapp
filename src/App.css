@@ -1,38 +1,101 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+body {
+  background: #141414;
+  /* background: linear-gradient(220.55deg, #4063BC 0%, #6B0013 100%); */
+  color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 90%;
+}
+
+.pagetitle {
+  font-family: 'Schoolbell', cursive;
+  font-size: large;
+  margin-right: auto;
+  margin-left: auto;
   text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 70%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.form {
+  margin-left: 12rem;
+  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-display {  display: grid;
+  grid-template-columns: 47% 53%;
+  grid-template-rows: 1fr;
+  gap: 5px 15px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "search-result artist-info";
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-result { 
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius:8px;
+    box-shadow: 0 15px 35px 0 rgba(210, 76, 194, 0.5);  
+    grid-area: search-result; 
 }
+
+.artist-info { 
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius:8px;
+  box-shadow: 0 15px 35px 0 rgba(210, 76, 194, 0.5); 
+  grid-area: artist-info; }
+
+
+.results {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  padding: auto;
+}
+
+img {
+  object-fit: contain;
+  border-radius: 5%;
+}
+
+.result-info {
+  margin-left: 1.5rem;
+}
+
+input {
+  width: 60%;
+  height: 45px;
+  border-radius:10px;
+}
+
+.search-btn {
+  background: transparent;
+  border-radius:10px;
+  color: rgba(200, 116, 183, 0.5);
+  border: 2px solid rgba(185, 99, 167, 0.5);
+}
+
+.searchBox {
+  text-align: center;
+  justify-content: center;
+}
+
+
+
