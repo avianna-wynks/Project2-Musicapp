@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import MoreAboutArtist from "./components/MoreAboutArtist";
 import NavBar from "./components/NavBar";
+import DisplaySearchResult from "./components/DisplaySearchResult";
 
 
 function App() {
@@ -13,8 +14,9 @@ function App() {
       <BrowserRouter>
       <NavBar />
       <Routes>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/artistinfo" element={<MoreAboutArtist />} />
+      <Route path="/" element={<Home />} /> 
+      <Route path="searchresults" component={<DisplaySearchResult />} />
+      <Route path="/artistinfo/:id" element={<MoreAboutArtist />} />
       </Routes>
       </BrowserRouter>
     </div>
@@ -23,15 +25,4 @@ function App() {
 
 export default App;
 
-const Router = () => {
-  return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/"></Route>
-      <Route path="/artistinfo" element={<MoreAboutArtist />} />
-      {/* <Route path="/about" element={<About />} ></Route> */}     
-    </Routes>
-    </BrowserRouter>
-  )
-}
 

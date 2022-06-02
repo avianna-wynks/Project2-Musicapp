@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link, } from "react-router-dom";
 import '../App.css';
 import SearchBox from './SearchBox';
 import DisplaySearchResult from './DisplaySearchResult';
@@ -48,14 +48,12 @@ function Home() {
       }
     }
 
-
   return (
         <div className="container">
       <form className="form" onSubmit={handleSubmit}>
       <SearchBox 
       setInputSearch={setInputSearch} inputSearch={inputSearch}
       />
-      <RandomArtists />
       </form>
       <div className="main-display">
       <DisplaySearchResult 

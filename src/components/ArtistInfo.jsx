@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import  Router from '../App';
 
+// export const UserCount = React.createContext()
+
 function ArtistInfo({ artistId, artistName }) {
   const [artistInfo, setArtistInfo] = useState([]);
   const [musicbrainzData, setMusicBrainzData] = useState([]);
-   console.log("musicbrain", musicbrainzData)
+//   const [IdForMusicBrainz, setIdForMusicBrainz] = useState("")
+  //  console.log("musicbrain", musicbrainzData)
 
   useEffect(() => {
     if (!artistId) {
@@ -42,6 +45,10 @@ function ArtistInfo({ artistId, artistName }) {
       });
   }, [artistId]);
 
+const IdForMusicBrainz = musicbrainzData?.id
+console.log("name of artist" , IdForMusicBrainz)
+if (artistId) {
+
   return (
     <div className="artist-info">
       <div className="artist-photos">
@@ -62,9 +69,11 @@ function ArtistInfo({ artistId, artistName }) {
       </p>
       <p>Country: {musicbrainzData ? (
           musicbrainzData?.area?.name) : "N/A" } </p>
-      <p>Find more about <Link to="/artistinfo">{artistInfo?.name}</Link></p>  
+      <p>Find more about <Link to={`/artistinfo/${IdForMusicBrainz}`}>{artistInfo?.name}</Link></p>  
+
+      
     </div>
-  );
+  )};
 }
 //{musicbrainzData?.tags[0].name}
 export default ArtistInfo;

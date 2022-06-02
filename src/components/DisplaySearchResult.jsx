@@ -1,4 +1,5 @@
 import React from 'react'
+import ArtistInfo from './ArtistInfo';
 //setArtistId(result?.result?.primary_artist.api_path)
 function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
   if (searchData.length === 0) {
@@ -12,6 +13,7 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
   return (
 
     <div className="search-result">
+      <h2> Your Music </h2>
       {searchData?.hits.map((result, index) => {
         return (
       <div className='results' key={index}>
@@ -26,10 +28,7 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
         <div className='result-info'>
         <p> Artist : {result?.result?.artist_names}</p>
         <p> Song : {result?.result?.title} </p>
-        <a href={result?.result?.url} 
-        target="_blank" 
-        className="link"
-        > View full yrics on Genius <span className="genius"> (external link)</span></a>
+        <a href={result?.result?.url} target="_blank" > View full yrics on Genius </a>
         </div>
       </div>
       )}
@@ -74,4 +73,3 @@ export default DisplaySearchResult;
     //   </div>
     //   </div>
     // </div>
-

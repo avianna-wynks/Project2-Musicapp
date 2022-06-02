@@ -8,7 +8,7 @@ function NavBar() {
     <nav className="pagetitle">
       <Link to="/." 
       style={{ textDecoration: 'none', color: '#EF0888' }}> 
-      BANGYA! </Link>
+      BANGYAL ! </Link>
       </nav>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 
 function SearchBox(props) {
 
@@ -12,9 +13,10 @@ function SearchBox(props) {
       onChange={((event) => props.setInputSearch(event.target.value))}
       value={props.inputSearch}
       />
-      <button 
-      className="search-btn">
+      {/* <Link to="searchresults"> */}
+        <button className="search-btn"> 
         Search</button>
+        {/* </Link> */}
       </div>
     </div>
   )
