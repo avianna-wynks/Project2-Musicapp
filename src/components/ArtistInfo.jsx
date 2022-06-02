@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import  Router from '../App';
-
-// export const UserCount = React.createContext()
+import MoreAboutArtist from "./MoreAboutArtist";
 
 function ArtistInfo({ artistId, artistName }) {
   const [artistInfo, setArtistInfo] = useState([]);
   const [musicbrainzData, setMusicBrainzData] = useState([]);
 //   const [IdForMusicBrainz, setIdForMusicBrainz] = useState("")
-  //  console.log("musicbrain", musicbrainzData)
 
   useEffect(() => {
     if (!artistId) {
@@ -37,7 +35,7 @@ function ArtistInfo({ artistId, artistName }) {
         return response.json();
       })
       .then((data) => {
-        console.log(data); 
+        console.log("in artist info", data); 
         setMusicBrainzData(data?.artists[0]);
       })
       .catch((err) => {
@@ -46,11 +44,13 @@ function ArtistInfo({ artistId, artistName }) {
   }, [artistId]);
 
 const IdForMusicBrainz = musicbrainzData?.id
-console.log("name of artist" , IdForMusicBrainz)
 if (artistId) {
 
   return (
     <div className="artist-info">
+      <div className="index">
+      <h2> Song Info</h2>
+      </div>
       <div className="artist-photos">
         <img
           src={artistInfo?.image_url}
@@ -69,7 +69,11 @@ if (artistId) {
       </p>
       <p>Country: {musicbrainzData ? (
           musicbrainzData?.area?.name) : "N/A" } </p>
-      <p>Find more about <Link to={`/artistinfo/${IdForMusicBrainz}`}>{artistInfo?.name}</Link></p>  
+      <p>Find more about 
+        <Link to={`/artistinfo/${IdForMusicBrainz}`} 
+      component={<MoreAboutArtist IdForMusicBrainz={IdForMusicBrainz} />}>{artistInfo?.name}
+      </Link>
+      </p>  
 
       
     </div>

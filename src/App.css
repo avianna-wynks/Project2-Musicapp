@@ -59,6 +59,10 @@ body {
   cursor: pointer;
 }
 
+.result-artist {
+  cursor: pointer;
+}
+
 .link {
   text-decoration: none;
   color: white;
@@ -78,6 +82,16 @@ body {
 .artist-photos {
   text-align: center;
   margin-top: 1.5rem;
+}
+
+.right-photo {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.song-info {
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .results {

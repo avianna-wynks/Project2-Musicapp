@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Home from './components/Home';
@@ -14,8 +14,8 @@ function App() {
       <BrowserRouter>
       <NavBar />
       <Routes>
-      <Route path="/" element={<Home />} /> 
-      <Route path="searchresults" component={<DisplaySearchResult />} />
+        <Route path="/" element={<Home />} />    
+      {/* <Route path="searchresults" component={<DisplaySearchResult />} /> */}
       <Route path="/artistinfo/:id" element={<MoreAboutArtist />} />
       </Routes>
       </BrowserRouter>

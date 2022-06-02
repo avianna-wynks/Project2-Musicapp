@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import NavBar from './NavBar'
 
-function MoreAboutArtist() {
+function MoreAboutArtist( IdForMusicBrainz ) {
     // const [id, setId] = useState('');
     const artID = useParams();
-    console.log("今のID",artID.id)
-    
-  useEffect(() => {
+    // console.log("今のID",artID.id)
+    //  console.log("Propsとして", IdForMusicBrainz)
+  // useEffect(() => {
 //     if (!artistId) {
 //       return;
 //     }
@@ -25,21 +25,21 @@ function MoreAboutArtist() {
 //         return setArtistInfo(data?.response.artist);
 //       })
 //       .catch((err) => console.error(err));
-    fetch(`https://musicbrainz.org/ws/2/artist/${artID.id}?inc=aliases&fmt=json`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Error status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data); 
-        // setMusicBrainzData(data?.artists[0]);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  //   fetch(`https://musicbrainz.org/ws/2/artist/${artID.id}?inc=aliases&fmt=json`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`Error status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data); 
+  //       // setMusicBrainzData(data?.artists[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
     
   return (
     <div>
