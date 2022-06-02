@@ -12,7 +12,6 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
   return (
 
     <div className="search-result">
-      <h2> Your Music </h2>
       {searchData?.hits.map((result, index) => {
         return (
       <div className='results' key={index}>
@@ -27,7 +26,10 @@ function DisplaySearchResult({searchData, inputSearch, setArtistId}) {
         <div className='result-info'>
         <p> Artist : {result?.result?.artist_names}</p>
         <p> Song : {result?.result?.title} </p>
-        <a href={result?.result?.url} target="_blank" > View full yrics on Genius </a>
+        <a href={result?.result?.url} 
+        target="_blank" 
+        className="link"
+        > View full yrics on Genius <span className="genius"> (external link)</span></a>
         </div>
       </div>
       )}

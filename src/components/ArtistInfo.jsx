@@ -1,44 +1,70 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
+import  Router from '../App';
 
-function ArtistInfo( { artistId }) {
-    const [artistInfo, setArtistInfo] = useState([]);
-      console.log("artist info", artistInfo)
+function ArtistInfo({ artistId, artistName }) {
+  const [artistInfo, setArtistInfo] = useState([]);
+  const [musicbrainzData, setMusicBrainzData] = useState([]);
+   console.log("musicbrain", musicbrainzData)
 
-    useEffect(() => {
-        if (!artistId) {
-            return 
+  useEffect(() => {
+    if (!artistId) {
+      return;
+    }
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Host": "genius.p.rapidapi.com",
+        "X-RapidAPI-Key": "e0236fb4a2mshf616fc9e68f5f98p12f2d2jsna26476e4149c",
+      },
+    };
+    const baseUrlArtist = "https://genius.p.rapidapi.com";
+    fetch(`${baseUrlArtist}${artistId}`, options)
+      .then((response) => response.json())
+      .then((data) => {
+        return setArtistInfo(data?.response.artist);
+      })
+      .catch((err) => console.error(err));
+    fetch(`https://musicbrainz.org/ws/2/artist/?query=${artistName}&fmt=json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error status: ${response.status}`);
         }
-        const options = {
-          method: "GET",
-          headers: {
-           'X-RapidAPI-Host': 'genius.p.rapidapi.com',
-           'X-RapidAPI-Key': 'e0236fb4a2mshf616fc9e68f5f98p12f2d2jsna26476e4149c',
-         }    
-        };
-        const baseUrlArtist= "https://genius.p.rapidapi.com"
-       fetch(`${baseUrlArtist}${artistId}`, options)
-          .then((response) => response.json())
-          .then((data) => {
-            return setArtistInfo(data?.response.artist)
-          })
-          .catch((err) => console.error(err));
-         }, [artistId]);
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data); 
+        setMusicBrainzData(data?.artists[0]);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [artistId]);
 
   return (
     <div className="artist-info">
-      <h2> Artist info here </h2>
       <div className="artist-photos">
-      <img src={artistInfo?.image_url} 
-      alt="" 
-      width={"400px"} 
-      height={"340px"} 
-      />
+        <img
+          src={artistInfo?.image_url}
+          alt=""
+          width={"350px"}
+          height={"300px"}
+        />
       </div>
       <p>Artist: {artistInfo?.name}</p>
-      <p>Also known as: {artistInfo?.alternate_names}</p>
+      <p>Genre: {musicbrainzData ? 
+       (musicbrainzData?.tags?.map((genre, index) => {
+          return (
+            <span key={index}> {genre?.name},</span>          
+          )
+      })) : "N/A"}
+      </p>
+      <p>Country: {musicbrainzData ? (
+          musicbrainzData?.area?.name) : "N/A" } </p>
+      <p>Find more about <Link to="/artistinfo">{artistInfo?.name}</Link></p>  
     </div>
-  )
+  );
 }
-
-export default ArtistInfo
+//{musicbrainzData?.tags[0].name}
+export default ArtistInfo;

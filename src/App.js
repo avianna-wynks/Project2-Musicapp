@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Home from './components/Home';
+import MoreAboutArtist from "./components/MoreAboutArtist";
+import NavBar from "./components/NavBar";
 
 
 function App() {
@@ -9,9 +11,10 @@ function App() {
   return (
     <div className="container">
       <BrowserRouter>
+      <NavBar />
       <Routes>
-      <Route path="/" element={<Home />}>
-      </Route>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/artistinfo" element={<MoreAboutArtist />} />
       </Routes>
       </BrowserRouter>
     </div>
@@ -20,23 +23,15 @@ function App() {
 
 export default App;
 
-  // const getData = () => {
-  //     fetch(`${baseUrl}${inputSearch}&fmt=json`)
-  //   //  fetch(" https://musicbrainz.org/ws/2/artist/?query=pink&fmt=json")
-  //     .then(response => {
-  //        if (!response.ok) {
-  //          throw new Error(`Error status: ${response.status}`);  
-  //       }
-  //     return response.json();
-  // })
-  //     .then(data => {
-  //        console.log(data)
-  //         setSearchData(data)
-  //       console.log("artist name", data.artists[0].name)
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     })
-      
-  // };
+const Router = () => {
+  return (
+    <BrowserRouter>
+    <Routes>
+      <Route path="/"></Route>
+      <Route path="/artistinfo" element={<MoreAboutArtist />} />
+      {/* <Route path="/about" element={<About />} ></Route> */}     
+    </Routes>
+    </BrowserRouter>
+  )
+}
 

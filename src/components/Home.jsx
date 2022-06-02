@@ -11,6 +11,7 @@ function Home() {
     const [inputSearch, setInputSearch] = useState("");
     const [searchText, setSearchText] = useState("");
     const [artistId, setArtistId] = useState("")
+    const [artistName, setArtistName] = useState("")
     console.log(searchData)
     
     useEffect(() => {
@@ -29,7 +30,8 @@ function Home() {
     fetch(`${baseUrl}${searchText}`, options)
        .then((response) => response.json())
        .then((data) => {
-        setArtistId(data?.response.hits[0].result.primary_artist.api_path)
+        setArtistId(data?.response.hits[0]?.result?.primary_artist?.api_path)
+        setArtistName(data?.response.hits[0]?.result?.primary_artist?.name)
          return setSearchData(data?.response)
        })
        .catch((err) => console.error(err));  
@@ -49,12 +51,6 @@ function Home() {
 
   return (
         <div className="container">
-
-      <div className="pagetitle">
-      <Link to="/." 
-      style={{ textDecoration: 'none', color: '#EF0888' }}> 
-      BANGYA! </Link>
-      </div >
       <form className="form" onSubmit={handleSubmit}>
       <SearchBox 
       setInputSearch={setInputSearch} inputSearch={inputSearch}
@@ -67,7 +63,10 @@ function Home() {
       setArtistId={setArtistId}
       inputSearch={inputSearch} 
       />
-      <ArtistInfo artistId={artistId} />
+      <ArtistInfo 
+      artistId={artistId} 
+      artistName={artistName}
+      />
       </div>
 
     </div>
