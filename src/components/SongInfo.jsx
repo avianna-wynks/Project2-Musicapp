@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function SongInfo({ song, searchData, artistId, setArtistId, addToFav, removefromFav }) {
-
+function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, favorites }) 
+{
+  
+  
+  // console.log(favorites.map((m) => m.result.id !== searchData?.hits[song]?.result?.id))
+ 
   if (searchData.length === 0) {
     return null;
   }
@@ -13,7 +17,7 @@ function SongInfo({ song, searchData, artistId, setArtistId, addToFav, removefro
         <h2> Song Info </h2>
       </div>
       <div className="right-photo">
-        <img onClick={() => {removefromFav(searchData?.hits[song])}}
+        <img 
           src={searchData?.hits[song]?.result?.header_image_thumbnail_url}
           alt=""
           width={"350px"}
@@ -46,10 +50,12 @@ function SongInfo({ song, searchData, artistId, setArtistId, addToFav, removefro
             View full yrics on Genius (external link)
           </a>
         </div>
+        {favorites.length === 0 ? ( 
         <div className="songinfo-right">
-          <svg onClick={() => 
-          addToFav(searchData?.hits[song])}
-            id="heart-icon"
+          <svg onClick={() => {
+          addToFav(searchData?.hits[song]);
+        }}
+            id="heart-icon-add"
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="30"
@@ -62,7 +68,49 @@ function SongInfo({ song, searchData, artistId, setArtistId, addToFav, removefro
             />
           </svg>
           add to fav
+          
         </div>
+        ) : 
+        favorites.length > 0 && !favorites.some((m) => m.result.id === searchData?.hits[song]?.result?.id) ? 
+        ( 
+        <div className="songinfo-right">
+          <svg onClick={() => {addToFav(searchData?.hits[song])}}
+            id="heart-icon-add"
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            className="bi bi-heart-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+            />
+          </svg>
+          add to fav
+          
+        </div>
+
+  ):
+        <div className="songinfo-right">
+        <svg onClick={() => {removefromFav(searchData?.hits[song])}}
+          id="heart-icon-remove"
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          className="bi bi-heart-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+          />
+        </svg>
+        remove form fav
+        
+      </div>
+        
+        }
       </div>
     </div>
   );

@@ -9,12 +9,13 @@ import { useState } from 'react';
 import ArtistInfo from "./components/ArtistInfo";
 
 
+
 function App() {
   const [searchData, setSearchData] = useState([]);
   const [artistId, setArtistId] = useState("");
 
   return (
-    <div className="container">
+    <div className="App">
       <BrowserRouter>
       <NavBar 
       setSearchData={searchData} />

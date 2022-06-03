@@ -5,15 +5,15 @@ import DisplaySearchResult from './DisplaySearchResult';
 import RandomArtists from './RandomArtists';
 import ArtistInfo from './ArtistInfo';
 import SongInfo from './SongInfo';
+import FavList from './FavList';
 
 function Home( { searchData, setSearchData, artistId, setArtistId } ) {
-    //  const [searchData, setSearchData] = useState([]);
     const [inputSearch, setInputSearch] = useState("");
     const [searchText, setSearchText] = useState("");
     const [favorites, setFavorites] = useState([])
     const [artistName, setArtistName] = useState("");
     const [song, setSong] = useState(0);
-    console.log("Home", searchData)
+    // console.log("Home", searchData)
     console.log("fav", favorites)
     
     useEffect(() => {
@@ -39,6 +39,14 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
        })
        .catch((err) => console.error(err));  
       }, [searchText]);
+
+      useEffect(()=> {
+        const FavoriteSongs = JSON.parse(
+          localStorage.getItem("favorites-songs")
+          );
+          if (!FavoriteSongs) return;
+          else setFavorites(FavoriteSongs);
+      }, [])
   
       
     const handleSubmit = (event) => {
@@ -51,15 +59,16 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
       setSong(0);
       }
     }
-      // const addFavSong = (movie) => {
-  //   const newFavoriteList = [...favorites, movie]
-  //     setFavorites(newFavoriteList);
-  //     saveToLocalStorage(newFavoriteList)
-  // }
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("favorites-songs", JSON.stringify(items))
+  } 
+
     const addToFav = (music) => {
         if (favorites.length < 20) {
         const newFavoriteList = [...favorites, music]
         setFavorites(newFavoriteList);
+        saveToLocalStorage(newFavoriteList);
         } else { 
             window.alert("You can have up to 20 songs in your favorites")}
     }
@@ -67,7 +76,10 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
     const removefromFav = (music) => {
         const newFavoriteList = favorites.filter((m) => m.result.id !== music.result.id)
         setFavorites(newFavoriteList);
+        saveToLocalStorage(newFavoriteList);
       }
+
+
 
   return (
         <div className="container">
@@ -76,7 +88,8 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
       setInputSearch={setInputSearch} inputSearch={inputSearch}
       />
       </form>
-      <div className="main-display">
+      <FavList favorites={favorites} removefromFav={removefromFav} />
+      <div className="main-display">    
       <DisplaySearchResult 
       searchData={searchData}
       song={song}
@@ -88,6 +101,7 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
       searchData={searchData}
       setArtistId={setArtistId}
       inputSearch={inputSearch} 
+      favorites={favorites}
       addToFav={addToFav}
       removefromFav={removefromFav}
     //   artistName={artistName}
