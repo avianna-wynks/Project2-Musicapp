@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Link, } from "react-router-dom";
 import '../App.css';
 import SearchBox from './SearchBox';
 import DisplaySearchResult from './DisplaySearchResult';
@@ -7,14 +6,15 @@ import RandomArtists from './RandomArtists';
 import ArtistInfo from './ArtistInfo';
 import SongInfo from './SongInfo';
 
-function Home() {
-    const [searchData, setSearchData] = useState([]);
+function Home( { searchData, setSearchData, artistId, setArtistId } ) {
+    //  const [searchData, setSearchData] = useState([]);
     const [inputSearch, setInputSearch] = useState("");
     const [searchText, setSearchText] = useState("");
-    const [artistId, setArtistId] = useState("");
+    const [favorites, setFavorites] = useState([])
     const [artistName, setArtistName] = useState("");
     const [song, setSong] = useState(0);
     console.log("Home", searchData)
+    console.log("fav", favorites)
     
     useEffect(() => {
      const options = {
@@ -51,6 +51,23 @@ function Home() {
       setSong(0);
       }
     }
+      // const addFavSong = (movie) => {
+  //   const newFavoriteList = [...favorites, movie]
+  //     setFavorites(newFavoriteList);
+  //     saveToLocalStorage(newFavoriteList)
+  // }
+    const addToFav = (music) => {
+        if (favorites.length < 20) {
+        const newFavoriteList = [...favorites, music]
+        setFavorites(newFavoriteList);
+        } else { 
+            window.alert("You can have up to 20 songs in your favorites")}
+    }
+
+    const removefromFav = (music) => {
+        const newFavoriteList = favorites.filter((m) => m.result.id !== music.result.id)
+        setFavorites(newFavoriteList);
+      }
 
   return (
         <div className="container">
@@ -68,14 +85,13 @@ function Home() {
       inputSearch={inputSearch} 
       />
       <SongInfo song={song} 
-      setSong={setSong}
       searchData={searchData}
+      setArtistId={setArtistId}
+      inputSearch={inputSearch} 
+      addToFav={addToFav}
+      removefromFav={removefromFav}
     //   artistName={artistName}
       />
-      {/* <ArtistInfo 
-      artistId={artistId} 
-      artistName={artistName}
-      /> */}
       </div>
 
     </div>

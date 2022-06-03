@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import ArtistInfo from './ArtistInfo';
+import { Link } from "react-router-dom";
 
 
-function DisplaySearchResult({searchData, setArtistId, song, setSong}) {
-  console.log("in display search result",song)
 
-  if (searchData.length === 0) {
-    return null;
+function DisplaySearchResult({searchData, song, setSong}) {
+
+  if (searchData?.length === 0) {
+    return (<></>);
   } 
 
   return (
+    
     <div className="search-result">
       <div className="index">
       <h2> Matched Songs </h2>
@@ -26,11 +27,10 @@ function DisplaySearchResult({searchData, setArtistId, song, setSong}) {
         </div>
         <div className='result-info'>
         <p> Song : {result?.result?.title} </p>
-        <p className='result-artist'
-        > 
-        Artist : {result?.result?.artist_names}</p>
-        <p>add to favorite</p>
-       {/* <a href={result?.result?.url} target="_blank" > View full yrics on Genius </a> */}
+        <p>
+        Artist : {result?.result?.artist_names}
+        </p>
+
         </div>
       </div>
       )}
@@ -39,3 +39,5 @@ function DisplaySearchResult({searchData, setArtistId, song, setSong}) {
   )}
 
 export default DisplaySearchResult;
+
+//  <a href={result?.result?.url} target="_blank" > View full yrics on Genius </a>

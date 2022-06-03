@@ -2,21 +2,43 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Home from './components/Home';
-import MoreAboutArtist from "./components/MoreAboutArtist";
+// import MoreAboutArtist from "./components/MoreAboutArtist";
 import NavBar from "./components/NavBar";
 import DisplaySearchResult from "./components/DisplaySearchResult";
+import { useState } from 'react';
+import ArtistInfo from "./components/ArtistInfo";
 
 
 function App() {
+  const [searchData, setSearchData] = useState([]);
+  const [artistId, setArtistId] = useState("");
 
   return (
     <div className="container">
       <BrowserRouter>
-      <NavBar />
+      <NavBar 
+      setSearchData={searchData} />
       <Routes>
-        <Route path="/" element={<Home />} />    
-      {/* <Route path="searchresults" component={<DisplaySearchResult />} /> */}
-      <Route path="/artistinfo/:id" element={<MoreAboutArtist />} />
+        <Route path="/" 
+        element=
+        {<Home 
+        searchData={searchData} 
+        setSearchData={setSearchData}
+        artistId={artistId} 
+        setArtistId={setArtistId}/>} 
+        >    
+      <Route 
+      path="searchresults" 
+      element={<DisplaySearchResult 
+      />} 
+      />
+      </Route>
+      <Route 
+      path="/artistinfo" 
+      element={<ArtistInfo 
+        artistId={artistId} 
+        setArtistId={setArtistId}/>} 
+        />
       </Routes>
       </BrowserRouter>
     </div>
@@ -24,5 +46,6 @@ function App() {
 }
 
 export default App;
+
 
 

@@ -5,9 +5,10 @@ import  Router from '../App';
 import MoreAboutArtist from "./MoreAboutArtist";
 
 function ArtistInfo({ artistId, artistName }) {
+
   const [artistInfo, setArtistInfo] = useState([]);
   const [musicbrainzData, setMusicBrainzData] = useState([]);
-//   const [IdForMusicBrainz, setIdForMusicBrainz] = useState("")
+  const [IdForMusicBrainz, setIdForMusicBrainz] = useState("")
 
   useEffect(() => {
     if (!artistId) {
@@ -43,13 +44,13 @@ function ArtistInfo({ artistId, artistName }) {
       });
   }, [artistId]);
 
-const IdForMusicBrainz = musicbrainzData?.id
+// const IdForMusicBrainz = musicbrainzData?.id
 if (artistId) {
 
   return (
     <div className="artist-info">
       <div className="index">
-      <h2> Song Info</h2>
+      <h2>{artistInfo?.name}</h2>
       </div>
       <div className="artist-photos">
         <img
@@ -69,11 +70,6 @@ if (artistId) {
       </p>
       <p>Country: {musicbrainzData ? (
           musicbrainzData?.area?.name) : "N/A" } </p>
-      <p>Find more about 
-        <Link to={`/artistinfo/${IdForMusicBrainz}`} 
-      component={<MoreAboutArtist IdForMusicBrainz={IdForMusicBrainz} />}>{artistInfo?.name}
-      </Link>
-      </p>  
 
       
     </div>
@@ -81,3 +77,6 @@ if (artistId) {
 }
 //{musicbrainzData?.tags[0].name}
 export default ArtistInfo;
+
+//       <Link to={`/artistinfo/${IdForMusicBrainz}`} 
+// component={<MoreAboutArtist IdForMusicBrainz={IdForMusicBrainz} />}>

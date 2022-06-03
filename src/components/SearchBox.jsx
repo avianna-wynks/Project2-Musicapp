@@ -1,8 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+
+//<article onClick={() => {nav(`/details/${props.item.id}`)}}>
 function SearchBox(props) {
+  const nav =useNavigate();
 
   return (
     <div className="seachBox">
@@ -13,8 +17,9 @@ function SearchBox(props) {
       onChange={((event) => props.setInputSearch(event.target.value))}
       value={props.inputSearch}
       />
-      {/* <Link to="searchresults"> */}
-        <button className="search-btn"> 
+        <button 
+        onClick={() => nav("/searchresults")}
+        className="search-btn"> 
         Search</button>
         {/* </Link> */}
       </div>
