@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import DisplaySearchResult from "./components/DisplaySearchResult";
 import { useState } from 'react';
 import ArtistInfo from "./components/ArtistInfo";
+import DisplayFav from "./components/DisplayFav";
 
 
 
@@ -27,12 +28,8 @@ function App() {
         setSearchData={setSearchData}
         artistId={artistId} 
         setArtistId={setArtistId}/>} 
-        >    
-      <Route 
-      path="searchresults" 
-      element={<DisplaySearchResult 
-      />} 
-      />
+        >  
+      <Route path="searchresults" element={<DisplaySearchResult />} />
       </Route>
       <Route 
       path="/artistinfo" 

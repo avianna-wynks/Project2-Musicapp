@@ -216,5 +216,25 @@ img {
   justify-content: center;
 }
 
+.artist-details {  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-rows: 37% 63%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "artist artist"
+    "photo info";
+}
+
+.info { 
+  text-align: left;
+  margin-right: 5rem;
+  grid-area: info; }
+
+.photo { grid-area: photo; }
+
+.artist { grid-area: artist; }
+
+
 
 

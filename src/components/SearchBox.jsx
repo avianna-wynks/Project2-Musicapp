@@ -21,7 +21,6 @@ function SearchBox(props) {
         onClick={() => nav("/searchresults")}
         className="search-btn"> 
         Search</button>
-        {/* </Link> */}
       </div>
     </div>
   )

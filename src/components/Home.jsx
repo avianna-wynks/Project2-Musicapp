@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import '../App.css';
 import SearchBox from './SearchBox';
 import DisplaySearchResult from './DisplaySearchResult';
-import RandomArtists from './RandomArtists';
 import ArtistInfo from './ArtistInfo';
 import SongInfo from './SongInfo';
 import FavList from './FavList';
@@ -11,10 +10,8 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
     const [inputSearch, setInputSearch] = useState("");
     const [searchText, setSearchText] = useState("");
     const [favorites, setFavorites] = useState([])
-    const [artistName, setArtistName] = useState("");
     const [song, setSong] = useState(0);
-    // console.log("Home", searchData)
-    console.log("fav", favorites)
+    const [which, setWhich] = useState("search")
     
     useEffect(() => {
      const options = {
@@ -33,8 +30,6 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
        .then((response) => response.json())
        .then((data) => {
         setArtistId(data?.response.hits[0]?.result?.primary_artist?.api_path)
-        setArtistName(data?.response.hits[0]?.result?.primary_artist?.name)
-
          return setSearchData(data?.response)
        })
        .catch((err) => console.error(err));  
@@ -88,19 +83,24 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
       setInputSearch={setInputSearch} inputSearch={inputSearch}
       />
       </form>
-      <FavList favorites={favorites} removefromFav={removefromFav} />
+      <FavList favorites={favorites} 
+      removefromFav={removefromFav} 
+      setSong={setSong}
+      setWhich={setWhich} />
       <div className="main-display">    
       <DisplaySearchResult 
       searchData={searchData}
-      song={song}
       setSong={setSong}
+      setWhich={setWhich}
       setArtistId={setArtistId}
-      inputSearch={inputSearch} 
+      inputSearch={inputSearch}
+      favorites={favorites} 
       />
       <SongInfo song={song} 
       searchData={searchData}
       setArtistId={setArtistId}
       inputSearch={inputSearch} 
+      which={which}
       favorites={favorites}
       addToFav={addToFav}
       removefromFav={removefromFav}

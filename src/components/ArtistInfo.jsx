@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
-import  Router from '../App';
-import MoreAboutArtist from "./MoreAboutArtist";
-
-function ArtistInfo({ artistId, artistName }) {
+function ArtistInfo({ artistId }) {
 
   const [artistInfo, setArtistInfo] = useState([]);
   const [musicbrainzData, setMusicBrainzData] = useState([]);
-  const [IdForMusicBrainz, setIdForMusicBrainz] = useState("")
+  console.log(artistInfo?.name)
 
   useEffect(() => {
     if (!artistId) {
@@ -26,9 +22,13 @@ function ArtistInfo({ artistId, artistName }) {
       .then((response) => response.json())
       .then((data) => {
         return setArtistInfo(data?.response.artist);
+        
       })
       .catch((err) => console.error(err));
-    fetch(`https://musicbrainz.org/ws/2/artist/?query=${artistName}&fmt=json`)
+  }, [artistId])
+  
+  useEffect(() => {
+    fetch(`https://musicbrainz.org/ws/2/artist/?query=${artistInfo?.name}&fmt=json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error status: ${response.status}`);
@@ -36,23 +36,23 @@ function ArtistInfo({ artistId, artistName }) {
         return response.json();
       })
       .then((data) => {
-        console.log("in artist info", data); 
+        console.log("data",data)
         setMusicBrainzData(data?.artists[0]);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [artistId]);
+  }, [artistInfo] );
 
 // const IdForMusicBrainz = musicbrainzData?.id
 if (artistId) {
 
   return (
-    <div className="artist-info">
-      <div className="index">
-      <h2>{artistInfo?.name}</h2>
+    <div className="artist-details">
+      <div className="artist">
+      <h1>{artistInfo?.name}</h1>
       </div>
-      <div className="artist-photos">
+      <div className="photo">
         <img
           src={artistInfo?.image_url}
           alt=""
@@ -60,7 +60,8 @@ if (artistId) {
           height={"300px"}
         />
       </div>
-      <p>Artist: {artistInfo?.name}</p>
+      <div className="info">
+      <p>Type: {musicbrainzData?.disambiguation}</p>
       <p>Genre: {musicbrainzData ? 
        (musicbrainzData?.tags?.map((genre, index) => {
           return (
@@ -70,7 +71,7 @@ if (artistId) {
       </p>
       <p>Country: {musicbrainzData ? (
           musicbrainzData?.area?.name) : "N/A" } </p>
-
+    </div>
       
     </div>
   )};

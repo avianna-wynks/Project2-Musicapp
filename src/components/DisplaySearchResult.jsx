@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 
 
-function DisplaySearchResult({searchData, song, setSong}) {
+function DisplaySearchResult({searchData, favorites, setSong, setWhich}) {
 
-  if (searchData?.length === 0) {
+  if (searchData?.length === 0 && favorites?.length === 0) {
     return (<></>);
   } 
 
@@ -19,7 +19,10 @@ function DisplaySearchResult({searchData, song, setSong}) {
         return (
       <div className='results' key={index}>
         <div className='reslutPhoto'>
-        <img onClick={handleClick => {setSong(index)}}
+        <img onClick={handleClick => 
+        {setSong(index)
+          setWhich("search")
+        }}
         src={result?.result?.header_image_thumbnail_url} 
         alt="" 
         width={"170px"}
