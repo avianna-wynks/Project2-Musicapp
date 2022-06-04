@@ -22,6 +22,7 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
               alt=""
               width={"350px"}
               height={"300px"}
+              className="big-photo"
             />
           </div>
           <div className="song-info">
@@ -81,6 +82,7 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
               alt=""
               width={"350px"}
               height={"300px"}
+              className="big-photo"
             />
           </div>
           <div className="song-info">

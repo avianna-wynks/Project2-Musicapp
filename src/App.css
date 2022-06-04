@@ -181,7 +181,7 @@ input {
   max-width: 300px;
   min-width: 300px;
   height: 150px;
-  border: solid #f3bddb;
+  /* border: solid #f3bddb; */
   grid-template-columns: 150px 150px;
   grid-template-rows: 110px 40px;
   gap: 0px 0px;
@@ -219,7 +219,6 @@ input {
   margin-right: 2rem;
 }
 
-
 .icon:hover, .remove:hover, .reslutPhoto, .result-artist  {
   cursor: pointer
 }
@@ -227,6 +226,19 @@ input {
 .link {
   text-decoration: none;
   color: white;
+}
+
+.result-artist {
+  color: white;
+  padding-bottom: 2rem;
+}
+
+a:link {
+  color: white;
+}
+
+a:hover {
+  color:#80FF00;
 }
 
 .artist-info { 
@@ -246,6 +258,10 @@ input {
   margin-top: 1.5rem;
 }
 
+.big-photo {
+  border: solid;
+}
+
 .song-info {
   text-align: left;
   display: grid;  
@@ -258,6 +274,7 @@ input {
 .songinfo-left {
   text-align: left;
   margin-left: 2rem;
+  padding: auto;
   grid-area:songinfo-left
 }
 
