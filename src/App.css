@@ -62,21 +62,37 @@ input {
 
 .fav-name {
   margin: auto;
+  margin-top: 2rem;
+  height:100px;
+  text-align: center; 
+  justify-content: center;
+  /* background-image: url(src/components/image/heart.png); 
+  background-repeat:  no-repeat;  */
+}
+.fav {
+  overflow-x: scroll;
   text-align: center;
+  margin: 0 auto;
   justify-content: center;
 }
 
 .fav-list-all {
-  border: solid palevioletred;
   display:flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  overflow-x: auto;
   width:100%;
   height: 160px;
+  border-bottom: solid palevioletred;
+  box-shadow: 0 15px 35px 0 rgba(210, 76, 194, 0.5);
+  border-radius: 10px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  overflow-x:scroll;
   margin-right: 2rem;
-  justify-content:center; 
   align-items: center;
+  white-space: nowrap;
+}
+
+.fav-list-all>div {
+  display:flex;
 }
 
 .fav-list {
@@ -100,21 +116,18 @@ input {
   margin-right: 2rem;
 }
 
-.icon:hover {
-  cursor: pointer;
+.remove { 
+  text-align: right;
+  margin-top: 3.5rem;
 }
 
-.reslutPhoto, .result-artist {
-  cursor: pointer;
+.icon:hover, .remove:hover, .reslutPhoto, .result-artist  {
+  cursor: pointer
 }
 
 .link {
   text-decoration: none;
   color: white;
-}
-
-.genius {
-  font-size: small;
 }
 
 .artist-info { 
@@ -135,6 +148,7 @@ input {
 }
 
 .song-info {
+  text-align: left;
   display: grid;  
   grid-template-columns: 70% 30%;
   grid-template-areas: "songinfo-left songinfo-right";
@@ -143,6 +157,7 @@ input {
 }
 
 .songinfo-left {
+  text-align: left;
   margin-left: 2rem;
   grid-area:songinfo-left
 }
@@ -151,7 +166,6 @@ input {
   color: #141414;
   margin-top: 0.7rem;
   align-items: center;
-  /* margin-left: 2rem; */
   display: flex;
   flex-flow: column;
   grid-area:songinfo-right

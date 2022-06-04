@@ -7,8 +7,6 @@ import NavBar from "./components/NavBar";
 import DisplaySearchResult from "./components/DisplaySearchResult";
 import { useState } from 'react';
 import ArtistInfo from "./components/ArtistInfo";
-import DisplayFav from "./components/DisplayFav";
-
 
 
 function App() {

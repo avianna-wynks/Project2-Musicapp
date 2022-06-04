@@ -1,9 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import useCollapse from "react-collapsed";
-import DisplayFav from './DisplayFav';
-
-
 
 
 function FavList( { favorites, removefromFav, setWhich, setSong} ) {
@@ -11,10 +7,13 @@ function FavList( { favorites, removefromFav, setWhich, setSong} ) {
     console.log(favorites)
 
     return (
-        <div>
+        <div className="fav">
             <div className='fav-name'>
             <p {...getToggleProps()}>
-                {isExpanded ? 'hide your favorite songs 🙈' : 'see your favorite songs  '}
+                {isExpanded ? <p> hide your favorite songs 🙈 </p>:             
+                <p> see your favorite songs💓 </p>
+                
+                }
             </p>
             </div>
             <div className="fav-list-all" {...getCollapseProps()}>
@@ -32,7 +31,7 @@ function FavList( { favorites, removefromFav, setWhich, setSong} ) {
                     <div>
                     {fav.result.title} <br/>
                      /{fav.result.artist_names}
-                     <p className="icon"
+                     <p className="remove"
                      onClick={() => {removefromFav(fav);}}
                      >Remove</p>
                      </div>

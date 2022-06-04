@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, favorites, which }) 
 {
@@ -28,8 +27,7 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
           <div className="song-info">
             <div className="songinfo-left">
               <p> 
-              Song : {favorites[song]?.result?.title} </p>
-    
+              Title : {favorites[song]?.result?.title} </p>   
               <Link
                 to={"/artistinfo"}
                 className="result-artist"
@@ -39,11 +37,11 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
                   )
                 }}
               >
-                Artist : {favorites[song]?.result?.artist_names}
+                By : {favorites[song]?.result?.artist_names}
               </Link>
     
               <p>
-                Release Date : {favorites[song]?.release_date_for_display}
+                Released on : {favorites[song]?.result.release_date_for_display}
               </p>
     
               <a href={favorites[song]?.result?.url} target="_blank">
@@ -88,7 +86,7 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
           <div className="song-info">
             <div className="songinfo-left">
               <p> 
-              Song : {searchData?.hits[song]?.result?.title} </p>
+              Title : {searchData?.hits[song]?.result?.title} </p>
     
               <Link
                 to={"/artistinfo"}
@@ -99,11 +97,11 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
                   )
                 }}
               >
-                Artist : {searchData?.hits[song]?.result?.artist_names}
+                By : {searchData?.hits[song]?.result?.artist_names}
               </Link>
     
               <p>
-                Release Date :{" "}
+                Released on :{" "}
                 {searchData?.hits[song]?.result?.release_date_for_display}
               </p>
               <a href={searchData?.hits[song]?.result?.url} target="_blank">

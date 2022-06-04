@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import '../App.css';
 import SearchBox from './SearchBox';
 import DisplaySearchResult from './DisplaySearchResult';
-import ArtistInfo from './ArtistInfo';
 import SongInfo from './SongInfo';
 import FavList from './FavList';
 
