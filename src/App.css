@@ -1,15 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+@import url(//fonts.googleapis.com/css?family=Vibur);
 
+html,body{
+  height:100%;
+
+}
 body {
-  background: #141414;
-  /* background: linear-gradient(220.55deg, #4063BC 0%, #6B0013 100%); */
-  color: #fff;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
+  background: #112 url(//images.weserv.nl/?url=i.imgur.com/6QJjYMe.jpg)  center no-repeat;
+  background-size:cover;
+  margin:0;
+  color: whitesmoke
+}
+
+.pagetitle {
+  margin-right: auto;
+  margin-left: auto;
   text-align: center;
-  align-self: center;
+  height: 100%;
+  width: 70%;
+}
+
+.logo {
+  text-align: center;
+  width: 65%;
+  height: 250px;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  user-select: none;
+}
+
+.logo b{
+  font: 400 17vh "Vibur";
+  color: #f3bddb;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #fa47a9, 0 0 0.5em #fa47a9, 0 0 0.1em #fa47a9, 0 10px 3px #000;
+}
+.logo b span{
+  animation: blink linear infinite 2s;
+}
+.logo b span:nth-of-type(2){
+  animation: blink linear infinite 3s;
+}
+@keyframes blink {
+  78% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  79%{
+     color: #333;
+  }
+  80% {
+    
+    text-shadow: none;
+  }
+  81% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  82% {
+    color: #333;
+    text-shadow: none;
+  }
+  83% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  92% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
 }
 
 .container {
@@ -20,21 +86,9 @@ body {
   width: 100%;
 }
 
-.pagetitle {
-  font-family: 'Schoolbell', cursive;
-  font-size: 90px;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 70%;
-}
-
-.form {
+.seachBox {
   margin: auto;
-  width: 60%;
+  width: 70%;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -42,10 +96,38 @@ body {
 
 input {
   text-align: center;
+  background: rgba(255,255,255,0.15);
   width: 80%;
   height: 45px;
   margin-left: 3rem;
   border-radius:10px;
+  color: black;
+  font-size: 35px
+}
+
+.search-btn {
+  vertical-align: top;  
+  clear:both;
+  color:rgba(252, 28, 204, 0.8);
+  border:2.5px solid;
+  border-radius:3px;
+  text-align:center;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:18px;
+  width:6em;
+  height: 45px;
+  font-weight:600;
+  bottom:20px;
+  left:0;
+  right:0;
+  background:rgba(118, 117, 117, 0.5);
+  box-shadow:0 0 0px 3px rgba(0,0,0,0.2);
+  opacity:0.4
+}
+
+.search-btn:hover{
+  color:rgb(208, 105, 228);opacity:1
 }
 
 .main-display {  
@@ -60,20 +142,20 @@ input {
     "search-result artist-info";
 }
 
+.fav {
+  overflow-x: scroll;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
 .fav-name {
   margin: auto;
   margin-top: 2rem;
-  height:100px;
+  font-size: 22px;
+  height:70px;
   text-align: center; 
   justify-content: center;
-  /* background-image: url(src/components/image/heart.png); 
-  background-repeat:  no-repeat;  */
-}
-.fav {
-  overflow-x: scroll;
-  text-align: center;
-  margin: 0 auto;
-  justify-content: center;
+  overflow: hidden;
 }
 
 .fav-list-all {
@@ -85,21 +167,42 @@ input {
   border-radius: 10px;
   flex-wrap: nowrap;
   overflow: hidden;
-  overflow-x:scroll;
   margin-right: 2rem;
   align-items: center;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .fav-list-all>div {
   display:flex;
 }
 
-.fav-list {
-  border: solid;
-  display:flex;
-  width: 300px;
+.fav-list  {  
+  display: grid;
+  max-width: 300px;
+  min-width: 300px;
   height: 150px;
+  border: solid #f3bddb;
+  grid-template-columns: 150px 150px;
+  grid-template-rows: 110px 40px;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "fav-left fav-info"
+    "fav-left remove";
+}
+
+.fav-left { grid-area: fav-left; }
+
+.fav-info { flex-wrap: wrap;
+  grid-area: fav-info; }
+
+.remove { 
+  text-align: right;
+  grid-area: remove; }
+
+
+.fav-right {
+  overflow-wrap: break-word;
 }
 
 .search-result { 
@@ -112,14 +215,10 @@ input {
 }
 
 .icon {
-  text-align: right;
+  text-align: right;  
   margin-right: 2rem;
 }
 
-.remove { 
-  text-align: right;
-  margin-top: 3.5rem;
-}
 
 .icon:hover, .remove:hover, .reslutPhoto, .result-artist  {
   cursor: pointer
@@ -218,13 +317,6 @@ img {
   margin-right: 3rem;
 }
 
-.search-btn {
-  background: transparent;
-  border-radius:10px;
-  color: rgba(200, 116, 183, 0.5);
-  border: 2px solid rgba(185, 99, 167, 0.5);
-}
-
 .searchBox {
   text-align: center;
   justify-content: center;
@@ -248,6 +340,9 @@ img {
 .photo { grid-area: photo; }
 
 .artist { grid-area: artist; }
+
+
+
 
 
 

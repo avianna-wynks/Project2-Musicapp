@@ -21,23 +21,19 @@ function FavList( { favorites, removefromFav, setWhich, setSong} ) {
                     <p> Favorite is empty </p>
                 ) : favorites.map((fav, index) => (
                     <div key={index} className="fav-list" >
-                    <div> 
+                    <div className='fav-left'> 
                     <img onClick={()=> {setWhich("favorite")
                     setSong(index)}}
                     src={fav.result.header_image_thumbnail_url} 
                     alt="" 
                     width={"140px"}/>
                     </div>
-                    <div>
-                    {fav.result.title} <br/>
-                     /{fav.result.artist_names}
-                     <p className="remove"
+                    <div className='fav-right'>
+                    {fav.result.title} / {fav.result.artist_names}
+                     <div className="remove"
                      onClick={() => {removefromFav(fav);}}
-                     >Remove</p>
+                     >Remove</div>
                      </div>
-                     {/* <Routes>
-                    <Route path="/favorite" element={<DisplayFav />}  />
-                    </Routes> */}
                     </div>
 
                 ))
