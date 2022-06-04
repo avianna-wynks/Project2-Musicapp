@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, favorites, which }) 
 {
   
-   
-  if (searchData.length === 0) {
-    return null;
-  }
-
+  if (searchData?.length === 0 && favorites?.length === 0) {
+    return (<></>);
+  } else if (searchData?.length === 0 && favorites?.length > 0 && which === "search") {
+    return (<></>);
+  } 
   switch (which) {
     case "favorite":
       return (
@@ -179,3 +179,4 @@ function SongInfo({ song, searchData , setArtistId, addToFav, removefromFav, fav
 
 }
 export default SongInfo;
+

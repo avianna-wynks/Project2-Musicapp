@@ -80,7 +80,9 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
         <div className="container">
       <form className="form" onSubmit={handleSubmit}>
       <SearchBox 
-      setInputSearch={setInputSearch} inputSearch={inputSearch}
+      setInputSearch={setInputSearch} 
+      inputSearch={inputSearch}
+      setWhich={setWhich}
       />
       </form>
       <FavList favorites={favorites} 
@@ -91,6 +93,7 @@ function Home( { searchData, setSearchData, artistId, setArtistId } ) {
       <DisplaySearchResult 
       searchData={searchData}
       setSong={setSong}
+      which={which}
       setWhich={setWhich}
       setArtistId={setArtistId}
       inputSearch={inputSearch}

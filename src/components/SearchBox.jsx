@@ -18,7 +18,9 @@ function SearchBox(props) {
       value={props.inputSearch}
       />
         <button 
-        onClick={() => nav("/searchresults")}
+        onClick={() => {nav("/searchresults")
+        props.setWhich("search");
+      }}
         className="search-btn"> 
         Search</button>
       </div>
