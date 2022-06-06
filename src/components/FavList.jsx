@@ -9,12 +9,12 @@ function FavList( { favorites, removefromFav, setWhich, setSong} ) {
     return (
         <div className="fav">
             <div className='fav-name'>
-            <p {...getToggleProps()}>
+            <div {...getToggleProps()}>
                 {isExpanded ? <p> hide your favorite songs 🙈 </p>:             
                 <p> see your favorite songs💓 </p>
                 
                 }
-            </p>
+            </div>
             </div>
             <div className="fav-list-all" {...getCollapseProps()}>
                 { favorites.length === 0 ? ( 
