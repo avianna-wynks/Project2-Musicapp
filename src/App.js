@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Home from './components/Home';
-// import MoreAboutArtist from "./components/MoreAboutArtist";
 import NavBar from "./components/NavBar";
 import DisplaySearchResult from "./components/DisplaySearchResult";
 import { useState } from 'react';
